@@ -63,7 +63,7 @@ class SearchManager(models.Manager):
         self._vector_field_cache = None
         super(SearchManager, self).__init__()
 
-    def get_query_set(self):
+    def get_queryset(self):
         return self.queryset_class(self.model)
 
     def contribute_to_class(self, cls, name):
@@ -164,7 +164,7 @@ class SearchManager(models.Manager):
         cursor.close()
 
     def search(self, *args, **kwargs):
-        return self.get_query_set().search(*args, **kwargs)
+        return self.get_queryset().search(*args, **kwargs)
 
 
 class SearchableModel(models.Model):
